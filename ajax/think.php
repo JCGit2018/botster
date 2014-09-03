@@ -30,15 +30,9 @@ if(!isset($_SESSION['conversation_id']))
 $botster->conversation = new Lenton\Botster\Conversation($_SESSION['conversation_id']);
 
 //Get input
-if(isset($_GET['input']))
-{
-	$input = $_GET['input'];
-}
-else
-{
-	if(($previous_message = $botster->conversation->getMessage(0)) === false || $previous_message['author'] != 1) exit();
-	$input = $previous_message['message'];
-}
+if(($previous_message = $botster->conversation->getMessage(0)) === false || $previous_message['author'] != 1) exit();
+$input = $previous_message['message'];
+	
 $botster->log('Input: '.$input);
 
 // Get Botster's response for input
@@ -51,5 +45,3 @@ $botster->log('Script executed in ' . $execution_time . ' seconds.');
 
 //Say output
 $botster->say($response);
-
-if(isset($_GET['input'])) echo '<pre>'.htmlentities($botster->log).'</pre>';
