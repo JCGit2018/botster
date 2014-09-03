@@ -22,7 +22,7 @@ $botster = (new Lenton\Botster\Factory\Botster)->make();
 //Check if conversation ID is set
 if(!isset($_SESSION['conversation_id']))
 {
-	$botster->error('Conversation ID is not set.');
+	exit("Error: Conversation ID is not set.");
 }
 //$botster->log('Conversation ID: '.$_SESSION['conversation_id']);
 
