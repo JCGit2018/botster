@@ -18,14 +18,14 @@ if(!isset($_SESSION['conversation_id']))
 }
 
 //Set conversation object
-$botster->conversation = new Lenton\Botster\Conversation($_SESSION['conversation_id']);
+$conversation = new Lenton\Botster\Conversation($_SESSION['conversation_id']);
 
-//Get input
-if(($previous_message = $botster->conversation->getMessage(0)) === false || $previous_message['author'] != 1) exit();
-$input = $previous_message['message'];
+// Get Botster's response to conversation
+$response = $botster->respond($conversation);
 
-// Get Botster's response for input
-$response = $botster->respond($input);
-
-//Say output
-$botster->say($response);
+// If Botster made a response
+if ($response !== false)
+{
+	//Say output
+	$botster->say($response);
+}
