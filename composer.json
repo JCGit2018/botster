@@ -1,0 +1,9 @@
+{
+    "name": "lenton/botster-web",
+    "description": "The Botster website",
+    "license": "GPL-3.0",
+	"require": {
+		"php": ">=5.4.0",
+		"lenton/botster": "dev-develop"
+	}
+}
