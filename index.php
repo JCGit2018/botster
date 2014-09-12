@@ -2,9 +2,6 @@
 
 require_once 'bootstrap.php';
 
-//Connect to database
-db_connect();
-
 //Start session
 session_start(); 
 ?>

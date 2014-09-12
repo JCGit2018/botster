@@ -7,22 +7,24 @@ session_start(); //Continue session
 if(isset($_SESSION['conversation_id']))
 {
 	//Connect to database
-	db_connect();
+	$dbh = db_connect();
 	
 	//Get conversation messages
-	$mres_conversation_id = mysql_real_escape_string($_SESSION['conversation_id']);
-	$res_messages = mysql_query("SELECT `author`, `message` FROM `messages` WHERE `conversation` = '".$mres_conversation_id."' ORDER BY `id`");
+	$query = $dbh->prepare('SELECT author, message FROM messages WHERE conversation = :conversation_id ORDER BY id');
+	$query->execute([
+		':conversation_id' => $_SESSION['conversation_id'],
+	]);
 	
 	//Echo conversation log
-	while($row_messages = mysql_fetch_assoc($res_messages))
+	while ($message = $query->fetchObject())
 	{
-		if($row_messages['author'] == 0)
+		if ($message->author == 0)
 		{
-			echo '<b><span class="author">BOT:</span> '.htmlentities($row_messages['message']).'</b><br />';
+			echo '<b><span class="author">BOT:</span> '.htmlentities($message->message).'</b><br />';
 		}
 		else
 		{
-			echo '<span class="author">YOU:</span> '.htmlentities($row_messages['message']).'<br />';
+			echo '<span class="author">YOU:</span> '.htmlentities($message->message).'<br />';
 		}
 	}
 }

@@ -3,10 +3,11 @@
 require_once '../bootstrap.php';
 
 //Connect to database
-db_connect();
+$dbh = db_connect();
 
 //Get number of inputs and outputs
-$inputs = mysql_fetch_row(mysql_query("SELECT COUNT(*) FROM `inputs`"));
+$query = $dbh->query("SELECT COUNT(*) AS count FROM inputs");
+$row = $query->fetchObject();
 
 //Echo number of items
-echo number_format($inputs[0]);
+echo number_format($row->count);

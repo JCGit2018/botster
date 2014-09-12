@@ -6,7 +6,7 @@ require_once '../bootstrap.php';
 if(isset($_POST['input']))
 {
 	//Connect to database
-	db_connect();
+	$dbh = db_connect();
 	
 	// Continue session
 	session_start();
@@ -14,12 +14,12 @@ if(isset($_POST['input']))
 	//If user isn't already in a conversation
 	if(!isset($_SESSION["conversation_id"]))
 	{
-		$conversation = new Lenton\Botster\Conversation();
+		$conversation = new Lenton\Botster\Conversation($dbh);
 		$_SESSION['conversation_id'] = $conversation->id;
 	}
 	else
 	{
-		$conversation = new Lenton\Botster\Conversation($_SESSION['conversation_id']);
+		$conversation = new Lenton\Botster\Conversation($dbh, $_SESSION['conversation_id']);
 	}
 
 	//Add input to the conversation
