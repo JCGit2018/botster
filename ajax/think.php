@@ -21,7 +21,8 @@ if(!isset($_SESSION['conversation_id']))
 }
 
 //Set conversation object
-$conversation = $botster_factory->makeConversation($_SESSION['conversation_id']);
+$conversation = $botster_factory->makeConversation();
+$conversation->getConversation($_SESSION['conversation_id']);
 
 // Let Botster respond in conversation
 $botster->respond($conversation);
