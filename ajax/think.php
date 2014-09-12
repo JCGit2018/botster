@@ -8,8 +8,11 @@ $dbh = db_connect();
 // Continue session
 session_start();
 
+// Instantiate botster factory
+$botster_factory = new Lenton\Botster\Factory\Botster($dbh);
+
 //Instantiate botster object
-$botster = (new Lenton\Botster\Factory\Botster($dbh))->make();
+$botster = $botster_factory->make();
 
 //Check if conversation ID is set
 if(!isset($_SESSION['conversation_id']))
@@ -18,7 +21,7 @@ if(!isset($_SESSION['conversation_id']))
 }
 
 //Set conversation object
-$conversation = new Lenton\Botster\Conversation($dbh, $_SESSION['conversation_id']);
+$conversation = $botster_factory->makeConversation($_SESSION['conversation_id']);
 
 // Let Botster respond in conversation
 $botster->respond($conversation);
