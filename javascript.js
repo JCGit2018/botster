@@ -33,6 +33,13 @@ function say()
 		{
 			if(xmlhttp1.readyState == 4 && xmlhttp1.status == 200)
 			{
+				// If there was an error
+				if(xmlhttp1.responseText != '')
+				{
+					// Alert it
+					alert(xmlhttp1.responseText);
+				}
+				
 				getLog();
 				updateStats();
 				think();
