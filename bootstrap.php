@@ -19,5 +19,7 @@ function db_connect()
 {
 	$mysql = $GLOBALS['settings']['mysql'];
 	
-	return new PDO('mysql:host='.$mysql['host'].';dbname='.$mysql['database'], $mysql['username'], $mysql['password']);
+	$dbh = new PDO('mysql:host='.$mysql['host'].';dbname='.$mysql['database'], $mysql['username'], $mysql['password']);
+	$dbh->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+	return $dbh;
 }
