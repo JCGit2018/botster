@@ -16,7 +16,11 @@ if(isset($_POST['input']))
 	//If user isn't already in a conversation
 	if(!isset($_SESSION["conversation_id"]))
 	{
-		$conversation_id = $conversation->newConversation();
+		//Get user information
+		$ip = $_SERVER['REMOTE_ADDR'];
+		$user_agent = isset($_SERVER['HTTP_USER_AGENT']) ? $_SERVER['HTTP_USER_AGENT'] : '';
+		
+		$conversation_id = $conversation->newConversation($ip, $user_agent);
 		$_SESSION['conversation_id'] = $conversation_id;
 	}
 	else
