@@ -11,7 +11,9 @@ if(isset($_POST['input']))
 	// Continue session
 	session_start();
 	
-	$conversation = (new Lenton\Botster\Factory\Botster($dbh))->makeConversation();
+	$botster_factory = new Lenton\Botster\Factory\Botster($dbh);
+	$conversation = $botster_factory->makeConversation();
+	$botster = $botster_factory->make();
 	
 	//If user isn't already in a conversation
 	if(!isset($_SESSION["conversation_id"]))
@@ -29,5 +31,5 @@ if(isset($_POST['input']))
 	}
 
 	//Add input to the conversation
-	$conversation->say(1, $_POST['input']);
+	$botster->say($conversation->id, 1, $_POST['input']);
 }
