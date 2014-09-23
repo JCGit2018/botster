@@ -35,5 +35,5 @@ if (isset($_POST['input']))
 	}
 
 	// Say input in the conversation
-	$botster->say($conversation_id, 1, $input);
+	$botster->say($conversation_id, $input);
 }
