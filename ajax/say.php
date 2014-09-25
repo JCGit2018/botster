@@ -15,7 +15,7 @@ if (isset($_POST['input']))
 	session_start();
 	
 	// Create Botster object
-	$botster = (new Lenton\Botster\Factory\Botster($dbh))->make();
+	$botster = (new Lentech\Botster\Factory\Botster($dbh))->make();
 	
 	// If user is already in a conversation
 	if (isset($_SESSION["conversation_id"]))

@@ -15,7 +15,7 @@ if(!isset($_SESSION['conversation_id']))
 }
 
 //Instantiate botster object
-$botster = (new Lenton\Botster\Factory\Botster($dbh))->make();
+$botster = (new Lentech\Botster\Factory\Botster($dbh))->make();
 
 // Let Botster respond in conversation
 $botster->respond($_SESSION['conversation_id']);

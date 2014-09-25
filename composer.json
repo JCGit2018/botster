@@ -1,9 +1,9 @@
 {
-    "name": "lenton/botster-web",
+    "name": "lentech/botster-web",
     "description": "The Botster website",
     "license": "GPL-3.0",
 	"require": {
 		"php": ">=5.4.0",
-		"lenton/botster": "dev-develop"
+		"lentech/botster": "dev-develop"
 	}
 }
