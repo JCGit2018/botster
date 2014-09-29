@@ -2,12 +2,16 @@
 
 require_once '../bootstrap.php';
 
+use Lentech\Botster\Factory;
+
 //Connect to database
 $dbh = db_connect();
 
-//Get number of inputs and outputs
-$query = $dbh->query("SELECT COUNT(*) AS count FROM inputs");
-$row = $query->fetchObject();
+// Instatiate repository factory
+$repository_factory = new Factory\Repository($dbh);
 
-//Echo number of items
-echo number_format($row->count);
+// Make input repository
+$input_repository = $repository_factory->makeInput();
+
+// Output number of inputs
+echo number_format($input_repository->count());
