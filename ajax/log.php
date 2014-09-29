@@ -2,29 +2,38 @@
 
 require_once '../bootstrap.php';
 
-session_start(); //Continue session
+use Lentech\Botster\Factory;
+use Lentech\Botster\Entity\Message;
 
-if(isset($_SESSION['conversation_id']))
+// Continue session
+session_start();
+
+// If conversation ID is set
+if (isset($_SESSION['conversation_id']))
 {
-	//Connect to database
+	// Get conversation ID
+	$conversation_id = $_SESSION['conversation_id'];
+	
+	// Get database handler
 	$dbh = db_connect();
 	
-	//Get conversation messages
-	$query = $dbh->prepare('SELECT author, message FROM messages WHERE conversation = :conversation_id ORDER BY id');
-	$query->execute([
-		':conversation_id' => $_SESSION['conversation_id'],
-	]);
+	// Instantiate message repository
+	$message_repository = (new Factory\Repository($dbh))->makeMessage();
 	
-	//Echo conversation log
-	while ($message = $query->fetchObject())
+	// Get conversation messages
+	$messages = array_reverse($message_repository->getLatestInConversation($conversation_id));
+	
+	// Output conversation log
+	foreach ($messages as $message)
 	{
-		if ($message->author == 0)
+		// If author is user
+		if ($message->author == Message::USER)
 		{
-			echo '<b><span class="author">BOT:</span> '.htmlentities($message->message).'</b><br />';
+			echo '<span class="author">YOU:</span> '.htmlentities($message->message).'<br />';
 		}
 		else
 		{
-			echo '<span class="author">YOU:</span> '.htmlentities($message->message).'<br />';
+			echo '<b><span class="author">BOT:</span> '.htmlentities($message->message).'</b><br />';
 		}
 	}
 }
