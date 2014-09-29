@@ -14,8 +14,8 @@ if (isset($_POST['input']))
 	// Continue session
 	session_start();
 	
-	// Create Botster object
-	$botster = (new Lentech\Botster\Factory\Botster($dbh))->make();
+	// Instantiate interactor factory
+	$interactor_factory = new Lentech\Botster\Factory\Interactor($dbh);
 	
 	// If user is already in a conversation
 	if (isset($_SESSION["conversation_id"]))
@@ -30,10 +30,12 @@ if (isset($_POST['input']))
 		$user_agent = isset($_SERVER['HTTP_USER_AGENT']) ? $_SERVER['HTTP_USER_AGENT'] : '';
 		
 		// Start new conversation
-		$conversation_id = $botster->newConversation($ip, $user_agent);
+		$start_conversation_interactor = $interactor_factory->makeStartConversation();
+		$conversation_id = $start_conversation_interactor->interact($ip, $user_agent);
 		$_SESSION['conversation_id'] = $conversation_id;
 	}
 
 	// Say input in the conversation
-	$botster->say($conversation_id, $input);
+	$say_message_interactor = $interactor_factory->makeSayMessage();
+	$say_message_interactor->interact($conversation_id, $input);
 }

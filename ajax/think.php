@@ -14,8 +14,9 @@ if(!isset($_SESSION['conversation_id']))
 	exit("Error: Conversation ID is not set.");
 }
 
-//Instantiate botster object
-$botster = (new Lentech\Botster\Factory\Botster($dbh))->make();
+// Instantiate interactor factory
+$interactor_factory = new Lentech\Botster\Factory\Interactor($dbh);
 
 // Let Botster respond in conversation
-$botster->respond($_SESSION['conversation_id']);
+$let_respond_interactor = $interactor_factory->makeLetRespond();
+$let_respond_interactor->interact($_SESSION['conversation_id']);
