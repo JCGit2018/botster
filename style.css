@@ -2,24 +2,6 @@
 {
 	-moz-box-sizing: border-box; -webkit-box-sizing: border-box; box-sizing: border-box;
 }
-.bar_button {
-	display: inline-block;
-	margin-left: 10px;
-	padding: 1px 6px 2px 6px;
-	background-color: #2F2F2F;
-	text-align: center;
-	color: #FFFFFF;
-	border: 1px solid #202020;
-	border-radius: 6px;
-}
-.bar_button:hover {
-	background-color: #373737;
-	text-decoration: none;
-}
-#bar_logo {
-	float: right;
-	padding-top: 5px;
-}
 a img
 {
 	border: 0;
@@ -33,14 +15,6 @@ a
 a:hover
 {
 	text-decoration: underline;
-}
-h1, h2, p
-{
-	margin: 0 0 10px 0;
-}
-input
-{
-	font-size: inherit;
 }
 html
 {
@@ -117,6 +91,7 @@ body
 	border-top-left-radius: 5px;
 	border-bottom-left-radius: 5px;
 	padding: 0 2%;
+	font-size: inherit;
 }
 #submit
 {
@@ -136,25 +111,11 @@ body
 	background: -webkit-linear-gradient(#7D7D7D, #626262);
 	text-decoration: none;
 }
-#footer
+.left
 {
-	position: absolute;
-	bottom: 0;
-	width: 100%;
-	text-align: center;
-	background: -webkit-linear-gradient(#1F86C9, #0D68A1);
-	background: linear-gradient(#1F86C9, #0D68A1);
-	border-top: 3px solid #212121;
-	padding: 1%;
-	color: #FFF;
-	overflow: hidden;
+	float: left;
 }
-#footer .sep
+.right
 {
-	margin: 0 3px;
+	float: right;
 }
-
-.mb { margin-bottom: 10px;}
-.b { font-weight: bold; }
-.left { float: left; }
-.right { float: right; }
