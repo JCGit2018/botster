@@ -128,7 +128,7 @@ function updateStats()
 {
 	getOnline();
 	getConversations();
-	getInputs();
+	getUtterances();
 	getConnections();
 }
 
@@ -160,17 +160,17 @@ function getConversations()
 	xmlhttp6.send();
 }
 
-function getInputs()
+function getUtterances()
 {
 	xmlhttp7 = new XMLHttpRequest();
 	xmlhttp7.onreadystatechange = function()
 	{
 		if (xmlhttp7.readyState == 4 && xmlhttp7.status == 200)
 		{
-			document.getElementById('inputs').innerHTML = xmlhttp7.responseText;
+			document.getElementById('utterances').innerHTML = xmlhttp7.responseText;
 		}
 	}
-	xmlhttp7.open('GET', domainRoot+'ajax/inputs.php', true);
+	xmlhttp7.open('GET', domainRoot+'ajax/utterances.php', true);
 	xmlhttp7.send();
 }
 

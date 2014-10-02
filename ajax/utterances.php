@@ -10,8 +10,8 @@ $dbh = db_connect();
 // Instatiate repository factory
 $repository_factory = new Factory\Repository($dbh);
 
-// Make input repository
-$input_repository = $repository_factory->makeInput();
+// Make utterance repository
+$utterance_repository = $repository_factory->makeUtterance();
 
-// Output number of inputs
-echo number_format($input_repository->count());
+// Output number of utterances
+echo number_format($utterance_repository->count());

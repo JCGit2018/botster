@@ -28,11 +28,11 @@ session_start();
 				<span title="Conversations Had" class="stat">
 					<img src="<?=DOMAIN_ROOT?>images/conversations.png" alt="Conversations Had: " /><span id="conversations" class="number"></span>
 				</span>
-				<span title="Unique Inputs" class="stat">
-					<img src="<?=DOMAIN_ROOT?>images/inputs.png" alt="Unique Inputs: " /><span id="inputs" class="number"></span>
+				<span title="Unique Utterances" class="stat">
+					<img src="<?=DOMAIN_ROOT?>images/quotation_mark.png" alt="Unique Utterances: " /><span id="utterances" class="number"></span>
 				</span>
-				<span title="Input Connections" class="stat">
-					<img src="<?=DOMAIN_ROOT?>images/connections.png" alt="Input Connections: " /><span id="connections" class="number"></span>
+				<span title="Utterance Connections" class="stat">
+					<img src="<?=DOMAIN_ROOT?>images/connections.png" alt="Utterance Connections: " /><span id="connections" class="number"></span>
 				</span>
 			</div>
 			<div class="right">
