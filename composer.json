@@ -4,6 +4,6 @@
     "license": "GPL-3.0",
 	"require": {
 		"php": ">=5.4.0",
-		"lentech/botster": "dev-develop"
+		"lentech/botster": "dev-master"
 	}
 }
