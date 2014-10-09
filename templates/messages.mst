@@ -1,0 +1,9 @@
+{{#messages}}
+	{{#robot}}<b>{{/robot}}
+	<span class="author">
+		{{#robot}}BOT:{{/robot}}
+		{{#human}}YOU:{{/human}}
+	</span>
+	{{message}}<br />
+	{{#robot}}</b>{{/robot}}
+{{/messages}}
