@@ -14,6 +14,8 @@ session_start();
 	<meta name="viewport" content="width=336, initial-scale=1" />
     <link rel="shortcut icon" href="<?=DOMAIN_ROOT?>images/icon.png" />
     <link rel="stylesheet" href="<?=DOMAIN_ROOT?>style.css" />
+	<script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+	<script type="text/javascript" src="<?=DOMAIN_ROOT?>mustache/mustache.js"></script>
 	<script type="text/javascript" src="<?=DOMAIN_ROOT?>settings.js"></script>
     <script type="text/javascript" src="<?=DOMAIN_ROOT?>javascript.js"></script>
 </head>
@@ -42,11 +44,6 @@ session_start();
 		<div id="messages"></div>
 		<a href="javascript:say()" class="button" id="submit">Say</a>
 		<div id="input_div"><input type="text" id="input" onkeydown="checkEnter(event, 'say')" maxlength="100" autocomplete="off" x-webkit-speech onwebkitspeechchange="say()" /></div>
-		<script>
-			focusInput();
-			getLog();
-			updateStatsLoop();
-		</script>
 	</div>
 </body>
 </html>
