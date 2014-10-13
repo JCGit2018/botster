@@ -23,23 +23,18 @@ session_start();
 	<script type="text/javascript" src="<?=DOMAIN_ROOT?>google_analytics.js"></script>
 	<div id="content">
 		<div id="stats">
-			<div class="left">
-				<span title="People Chatting" class="stat">
-					<img src="<?=DOMAIN_ROOT?>images/online.png" alt="People Chatting: " /><span id="online" class="number"></span>
-				</span>
-				<span title="Conversations Had" class="stat">
-					<img src="<?=DOMAIN_ROOT?>images/conversations.png" alt="Conversations Had: " /><span id="conversations" class="number"></span>
-				</span>
-				<span title="Unique Utterances" class="stat">
-					<img src="<?=DOMAIN_ROOT?>images/quotation_mark.png" alt="Unique Utterances: " /><span id="utterances" class="number"></span>
-				</span>
-				<span title="Utterance Connections" class="stat">
-					<img src="<?=DOMAIN_ROOT?>images/connections.png" alt="Utterance Connections: " /><span id="connections" class="number"></span>
-				</span>
-			</div>
-			<div class="right">
-				<a href="javascript:newConversation()" class="stat"><img src="<?=DOMAIN_ROOT?>images/bin.png" alt="New Conversation" title="New Conversation" /></a>
-			</div>
+			<span title="People Chatting" class="stat">
+				<img src="<?=DOMAIN_ROOT?>images/online.png" alt="People Chatting: " /><span id="online" class="number"></span>
+			</span>
+			<span title="Conversations Had" class="stat">
+				<img src="<?=DOMAIN_ROOT?>images/conversations.png" alt="Conversations Had: " /><span id="conversations" class="number"></span>
+			</span>
+			<span title="Unique Utterances" class="stat">
+				<img src="<?=DOMAIN_ROOT?>images/quotation_mark.png" alt="Unique Utterances: " /><span id="utterances" class="number"></span>
+			</span>
+			<span title="Utterance Connections" class="stat">
+				<img src="<?=DOMAIN_ROOT?>images/connections.png" alt="Utterance Connections: " /><span id="connections" class="number"></span>
+			</span>
 		</div>
 		<div id="messages"></div>
 		<a href="javascript:say()" class="button" id="submit">Say</a>
