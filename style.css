@@ -111,11 +111,3 @@ body
 	background: -webkit-linear-gradient(#7D7D7D, #626262);
 	text-decoration: none;
 }
-.left
-{
-	float: left;
-}
-.right
-{
-	float: right;
-}

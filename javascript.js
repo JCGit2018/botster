@@ -1,4 +1,9 @@
 /**
+ * ID of the current conversation.
+ */
+conversationId = null;
+
+/**
  * The last message ID retrieved.
  */
 lastMessageId = null;
@@ -8,7 +13,6 @@ lastMessageId = null;
  */
 $(document).ready(function() {
 	focusInput();
-	getLog(function(){});
 	updateStatsLoop();
 });
 
@@ -75,15 +79,22 @@ function appendMessages(data)
  */
 function say()
 {
+	// If a conversation hasn't been started yet
+	if (conversationId === null)
+	{
+		// Start a new conversation
+		newConversation();
+	}
+	
 	// Filter input
 	var input = document.getElementById('input').value.replace(/^\s+|\s+$/g, '');
-	
+
 	// If input is empty
 	if (input === '')
 	{
 		return false;
 	}
-	
+
 	// Disable input and submit
 	var messageInput = document.getElementById('input');
 	var sayButton = document.getElementById('submit');
@@ -91,8 +102,14 @@ function say()
 	sayButton.disabled = true;
 	messageInput.value = '';
 
+	// Build data to send
+	$data = {
+		"conversation_id": conversationId,
+		"input": input
+	};
+
 	// Post data to server
-	$.post(domainRoot+'ajax/say.php', {"input":input}, function(response) {
+	$.post(domainRoot+'ajax/say.php', $data, function(response) {
 		// If there was an error
 		if (response !== '')
 		{
@@ -156,27 +173,37 @@ function getLog(callback)
 	}
 	
 	$.getJSON($url, function(data) {
-		// Add new messages
-		appendMessages(data);
-		
-		// Update last message ID
-		lastMessageId = data.messages[data.messages.length-1].id;
+		// If there are new messages
+		if (data.messages.length !== 0)
+		{
+			// Add new messages
+			appendMessages(data);
+
+			// Update last message ID
+			lastMessageId = data.messages[data.messages.length-1].id;
+		}
 		
 		callback();
 	});
 }
 
 /**
- * Clears the chatbox and ends the conversation.
+ * Starts a new conversation.
  * 
  * @return {void}
  */
 function newConversation()
 {
-	$.get(domainRoot+'ajax/new.php', function(data) {
-		document.getElementById('messages').innerHTML = '';
-		focusInput();
-	});
+	var request = new XMLHttpRequest();
+	request.onload = function() {
+		// Decode data
+		var data = JSON.parse(request.responseText);
+		
+		// Set conversation ID
+		conversationId = data.conversation_id;
+	};
+	request.open('get', domainRoot+'ajax/new_conversation.php', false);
+	request.send();
 }
 
 /**
