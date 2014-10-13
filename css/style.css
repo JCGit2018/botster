@@ -1,0 +1,176 @@
+@import url(http://fonts.googleapis.com/css?family=Russo+One);
+*, *:before, *:after {
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box; }
+
+a {
+  font-weight: bold;
+  text-decoration: none;
+  color: #FFD000; }
+  a:hover {
+    text-decoration: underline; }
+  a img {
+    border: 0; }
+
+html {
+  height: 100%;
+  font-size: 100%; }
+
+body {
+  margin: 0;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  padding: 2%;
+  font: 1.2rem arial, sans-serif;
+  background-color: #76B9E2;
+  color: #333; }
+
+header.main {
+  display: none; }
+  header.main .information {
+    display: none; }
+  header.main .organisation {
+    display: none; }
+
+.stats {
+  margin-bottom: 2%;
+  display: flex;
+  justify-content: center;
+  font-family: 'Russo One', sans-serif; }
+  .stats .stat {
+    margin-right: 15px; }
+    .stats .stat .title {
+      display: none; }
+    .stats .stat .number {
+      color: #fff; }
+
+.chat {
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+  font-size: 1.5rem; }
+  .chat .messages {
+    flex-grow: 1;
+    overflow-y: auto;
+    line-height: 1.5;
+    background-color: #FFF;
+    padding: 4%;
+    margin-bottom: 2%;
+    border-radius: 10px; }
+    .chat .messages .message.robot {
+      font-weight: bold; }
+    .chat .messages .message .author {
+      color: #A0A0A0;
+      font-style: italic; }
+  .chat .input {
+    display: flex;
+    height: 50px; }
+    .chat .input .text-box {
+      flex: 1;
+      height: 100%;
+      border: 0;
+      outline: 0;
+      margin: 0;
+      color: #000000;
+      padding: 0 4%;
+      font-size: inherit;
+      border-radius: 10px; }
+    .chat .input .say-button {
+      display: none; }
+
+@media (min-width: 800px) {
+  body {
+    flex-direction: row;
+    padding: 0; }
+
+  header.main {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    background-color: #fff; }
+    header.main .logo {
+      width: 60%;
+      margin-top: 5%; }
+    header.main h1 {
+      margin: 5% 0;
+      font-size: 3.2vw;
+      text-transform: uppercase;
+      font-family: 'Russo One', sans-serif;
+      font-weight: normal; }
+    header.main .information {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      flex: 1;
+      background-color: #1d77b0;
+      color: #fff;
+      padding: 8%; }
+      header.main .information p {
+        overflow-x: auto;
+        font-size: 1vw; }
+      header.main .information .links {
+        display: flex;
+        justify-content: center; }
+        header.main .information .links a {
+          width: 100px; }
+          header.main .information .links a img {
+            width: 100%; }
+    header.main .organisation {
+      display: block;
+      margin: 5%; }
+      header.main .organisation img {
+        display: block; }
+
+  .stats {
+    order: 3;
+    flex: 1;
+    flex-direction: column;
+    margin-bottom: 0;
+    background-color: #444; }
+    .stats .stat {
+      flex: 1;
+      margin-right: 0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center; }
+      .stats .stat:nth-child(even) {
+        background-color: #4d4d4d; }
+      .stats .stat .title {
+        display: block;
+        order: 2;
+        color: #FACE20;
+        font-size: 1.3vw; }
+      .stats .stat .icon {
+        display: none; }
+      .stats .stat .number {
+        font-size: 3.5vw;
+        color: #fff; }
+
+  .chat {
+    flex: 2;
+    padding: 5% 10%; }
+    .chat .input .text-box {
+      border-top-right-radius: 0;
+      border-bottom-right-radius: 0; }
+    .chat .input .say-button {
+      display: flex;
+      align-items: center;
+      max-width: 250px;
+      height: 100%;
+      padding: 0 5%;
+      text-align: center;
+      background: -webkit-linear-gradient(#6e6e6e, #535353);
+      background: linear-gradient(#6e6e6e, #535353);
+      color: #FFF;
+      border-top-right-radius: 10px;
+      border-bottom-right-radius: 10px; }
+      .chat .input .say-button:hover {
+        background: -webkit-linear-gradient(#7d7d7d, #626262);
+        text-decoration: none; } }
+
+/*# sourceMappingURL=style.css.map */

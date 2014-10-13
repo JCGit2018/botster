@@ -1,44 +1,61 @@
-<?php
-
-require_once 'bootstrap.php';
-
-//Start session
-session_start(); 
-?>
+<?php require_once 'bootstrap.php'; ?>
 <!doctype html>
 <html>
-<head>
-	<title>Botster - Chatbot Artificial Intelligence</title>
-    <meta charset="UTF-8" />
-    <meta name="description" content="Botster is an online chatbot artificial intelligence which learns from the conversations it has with users on the Internet." />
-	<meta name="viewport" content="width=336, initial-scale=1" />
-    <link rel="shortcut icon" href="<?=DOMAIN_ROOT?>images/icon.png" />
-    <link rel="stylesheet" href="<?=DOMAIN_ROOT?>style.css" />
-	<script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
-	<script type="text/javascript" src="<?=DOMAIN_ROOT?>mustache/mustache.js"></script>
-	<script type="text/javascript" src="<?=DOMAIN_ROOT?>settings.js"></script>
-    <script type="text/javascript" src="<?=DOMAIN_ROOT?>javascript.js"></script>
-</head>
-<body>
-	<script type="text/javascript" src="<?=DOMAIN_ROOT?>google_analytics.js"></script>
-	<div id="content">
-		<div id="stats">
+	<head>
+		<title>Botster - Chatbot Artificial Intelligence</title>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, user-scalable=no">
+		<meta name="description" content="Botster is an online chatbot artificial intelligence which learns from the conversations it has with users on the Internet." />
+		<link rel="shortcut icon" href="<?=DOMAIN_ROOT?>images/icon.png" />
+		<link rel="stylesheet" href="<?=DOMAIN_ROOT?>css/style.css" />
+		<script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+		<script type="text/javascript" src="<?=DOMAIN_ROOT?>mustache/mustache.js"></script>
+		<script type="text/javascript" src="<?=DOMAIN_ROOT?>settings.js"></script>
+		<script type="text/javascript" src="<?=DOMAIN_ROOT?>javascript.js"></script>
+	</head>
+	<body>
+		<script type="text/javascript" src="<?=DOMAIN_ROOT?>google_analytics.js"></script>
+		<header class="main">
+			<img src="<?=DOMAIN_ROOT?>images/logo.png" class="logo" alt="" />
+			<h1>Botster</h1>
+			<div class="information">
+				<p>Hello there, my name's Botster and I'm an open-source chatbot artificial intelligence! My goal is to be able to have conversations with humans which are intellectual, useful, and entertaining. I learn from every conversation I have, therefore my responses are constantly improving. I learn by seeing what others reply with to certain messages; I'm a bit of a copy-cat really. After I have more and more example replies to a message, I can then work out which of them are most suitable.</p>
+				<div class="links">
+					<a href="https://github.com/lentech/botster"><img src="<?=DOMAIN_ROOT?>images/github_icon.png" alt="GitHub" /></a>
+				</div>
+			</div>
+			<a href="http://lentech.org" class="organisation">
+				<img src="http://lentech.org/img/logo.png" alt="Lentech" />
+			</a>
+		</header>
+		<div class="stats">
 			<span title="People Chatting" class="stat">
-				<img src="<?=DOMAIN_ROOT?>images/online.png" alt="People Chatting: " /><span id="online" class="number"></span>
+				<div class="title">People Chatting</div>
+				<img src="<?=DOMAIN_ROOT?>images/online.png" alt="" class="icon" />
+				<span id="online" class="number"></span>
 			</span>
 			<span title="Conversations Had" class="stat">
-				<img src="<?=DOMAIN_ROOT?>images/conversations.png" alt="Conversations Had: " /><span id="conversations" class="number"></span>
+				<div class="title">Conversations Had</div>
+				<img src="<?=DOMAIN_ROOT?>images/conversations.png" alt="" class="icon" />
+				<span id="conversations" class="number"></span>
 			</span>
 			<span title="Unique Utterances" class="stat">
-				<img src="<?=DOMAIN_ROOT?>images/quotation_mark.png" alt="Unique Utterances: " /><span id="utterances" class="number"></span>
+				<div class="title">Unique Utterances</div>
+				<img src="<?=DOMAIN_ROOT?>images/quotation_mark.png" alt="" class="icon" />
+				<span id="utterances" class="number"></span>
 			</span>
 			<span title="Utterance Connections" class="stat">
-				<img src="<?=DOMAIN_ROOT?>images/connections.png" alt="Utterance Connections: " /><span id="connections" class="number"></span>
+				<div class="title">Utterance Connections</div>
+				<img src="<?=DOMAIN_ROOT?>images/connections.png" alt="" class="icon" />
+				<span id="connections" class="number"></span>
 			</span>
 		</div>
-		<div id="messages"></div>
-		<a href="javascript:say()" class="button" id="submit">Say</a>
-		<div id="input_div"><input type="text" id="input" onkeydown="checkEnter(event, 'say')" maxlength="100" autocomplete="off" x-webkit-speech onwebkitspeechchange="say()" /></div>
-	</div>
-</body>
+		<div class="chat">
+			<div id="messages" class="messages"></div>
+			<div class="input">
+				<input type="text" onkeydown="checkEnter(event, 'say')" maxlength="100" autocomplete="off" x-webkit-speech onwebkitspeechchange="say()" id="input" class="text-box" />
+				<a href="javascript:say()" id="submit" class="say-button">Say</a>
+			</div>
+		</div>
+	</body>
 </html>
