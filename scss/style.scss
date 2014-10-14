@@ -19,6 +19,9 @@ a {
 		border: 0;
 	}
 }
+input {
+	font-size: inherit;
+}
 html {
 	height: 100%;
 	font-size: 100%;
@@ -97,7 +100,6 @@ header.main {
 			margin: 0;
 			color: #000000;
 			padding: 0 4%;
-			font-size: inherit;
 			border-radius: 10px;
 		}
 		.say-button {
@@ -210,21 +212,21 @@ header.main {
 				border-bottom-right-radius: 0;
 			}
 			.say-button {
-				display: flex;
-				align-items: center;
-				max-width: 250px;
+				display: block;
 				height: 100%;
 				padding: 0 5%;
-				text-align: center;
 				background: -webkit-linear-gradient(#6E6E6E, #535353);
 				background: linear-gradient(#6E6E6E, #535353);
 				color: #FFF;
 				border-top-right-radius: 10px;
 				border-bottom-right-radius: 10px;
+				font-weight: bold;
+				border: 0;
+				outline: none;
 
 				&:hover {
 					background: -webkit-linear-gradient(#7D7D7D, #626262);
-					text-decoration: none;
+					cursor: pointer;
 				}
 			}
 		}

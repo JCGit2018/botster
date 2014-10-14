@@ -12,6 +12,20 @@ lastMessageId = null;
  * Runs on document load.
  */
 $(document).ready(function() {
+	var input = document.getElementById('input');
+	
+	input.addEventListener('keydown', function(event) {
+		checkEnter(event, 'say');
+	});
+	
+	input.addEventListener('webkitspeechchange', function() {
+		say();
+	});
+	
+	document.getElementById('submit').addEventListener('click', function() {
+		say();
+	});
+	
 	focusInput();
 	updateStatsLoop();
 });
