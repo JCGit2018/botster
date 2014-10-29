@@ -41,7 +41,7 @@ foreach ($messages as $message)
 {
 	$json['messages'][] = [
 		'id' => (int) $message->id,
-		'author' => (int) $message->author,
+		'author_id' => (int) $message->author_id,
 		'message' => $message->message,
 	];
 }

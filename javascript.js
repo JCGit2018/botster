@@ -66,7 +66,7 @@ function appendMessages(data)
 	$.get(domainRoot+'templates/messages.mst', function(template) {
 		// Set author booleans
 		$.each(data.messages, function(index, message) {
-			if (message.author === 0) {
+			if (message.author_id === 0) {
 				data.messages[index].robot = true;
 			}
 			else {
