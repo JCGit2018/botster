@@ -5,5 +5,6 @@
 	"require": {
 		"php": ">=5.4.0",
 		"lentech/botster": "dev-master"
-	}
+	},
+	"minimum-stability": "dev"
 }
