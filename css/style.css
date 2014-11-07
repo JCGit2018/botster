@@ -117,10 +117,8 @@ header.main {
       header.main .information .links {
         display: flex;
         justify-content: center; }
-        header.main .information .links a {
-          width: 100px; }
-          header.main .information .links a img {
-            width: 100%; }
+        header.main .information .links a img {
+          width: 100%; }
     header.main .organisation {
       display: block;
       margin: 5%; }
