@@ -25,7 +25,7 @@
 				</div>
 			</div>
 			<a href="http://lentech.org" class="organisation">
-				<img src="http://lentech.org/img/logo.png" alt="Lentech" />
+				<img src="<?=DOMAIN_ROOT?>images/lentech_logo.png" alt="Lentech" />
 			</a>
 		</header>
 		<div class="stats">
