@@ -1,4 +1,4 @@
-@import url(http://fonts.googleapis.com/css?family=Russo+One);
+@import url(http://fonts.googleapis.com/css?family=Open+Sans:400italic,700italic,400,300,700);
 *, *:before, *:after {
   -moz-box-sizing: border-box;
   -webkit-box-sizing: border-box;
@@ -14,7 +14,8 @@ a {
     border: 0; }
 
 input {
-  font-size: inherit; }
+  font: inherit;
+  color: inherit; }
 
 html {
   height: 100%;
@@ -26,7 +27,7 @@ body {
   display: flex;
   flex-direction: column;
   padding: 2%;
-  font: 1.2rem arial, sans-serif;
+  font: 1rem 'Open Sans', sans-serif;
   background-color: #76B9E2;
   color: #333; }
 
@@ -40,8 +41,7 @@ header.main {
 .stats {
   margin-bottom: 2%;
   display: flex;
-  justify-content: center;
-  font-family: 'Russo One', sans-serif; }
+  justify-content: center; }
   .stats .stat {
     margin-right: 15px; }
     .stats .stat .title {
@@ -69,14 +69,13 @@ header.main {
       font-style: italic; }
   .chat .input {
     display: flex;
-    height: 50px; }
+    height: 45px; }
     .chat .input .text-box {
       flex: 1;
       height: 100%;
       border: 0;
       outline: 0;
       margin: 0;
-      color: #000000;
       padding: 0 4%;
       border-radius: 10px; }
     .chat .input .say-button {
@@ -98,29 +97,25 @@ header.main {
       width: 60%;
       margin-top: 5%; }
     header.main h1 {
-      margin: 5% 0;
-      font-size: 3.2vw;
+      margin: 2% 0 5%;
+      font-size: 3vw;
       text-transform: uppercase;
-      font-family: 'Russo One', sans-serif;
-      font-weight: normal; }
+      font-weight: 300; }
     header.main .information {
       display: flex;
       flex-direction: column;
       justify-content: space-between;
       flex: 1;
-      background-color: #1d77b0;
+      background-color: #286AB0;
       color: #fff;
       padding: 8%; }
       header.main .information p {
-        overflow-x: auto;
-        font-size: 1vw; }
+        overflow-x: auto; }
       header.main .information .links {
         display: flex;
         justify-content: center; }
-        header.main .information .links a {
-          width: 100px; }
-          header.main .information .links a img {
-            width: 100%; }
+        header.main .information .links a img {
+          width: 100%; }
     header.main .organisation {
       display: block;
       margin: 5%; }
@@ -151,11 +146,12 @@ header.main {
         display: none; }
       .stats .stat .number {
         font-size: 3.5vw;
+        font-weight: bold;
         color: #fff; }
 
   .chat {
     flex: 2;
-    padding: 5% 10%; }
+    padding: 6%; }
     .chat .input .text-box {
       border-top-right-radius: 0;
       border-bottom-right-radius: 0; }
@@ -168,7 +164,6 @@ header.main {
       color: #FFF;
       border-top-right-radius: 10px;
       border-bottom-right-radius: 10px;
-      font-weight: bold;
       border: 0;
       outline: none; }
       .chat .input .say-button:hover {
