@@ -4,7 +4,12 @@
     "license": "GPL-3.0",
 	"require": {
 		"php": ">=5.4.0",
-		"lentech/botster": "dev-master"
+		"aura/sqlquery": "~2.1.0"
 	},
-	"minimum-stability": "dev"
+	"minimum-stability": "dev",
+    "autoload": {
+        "psr-0": {
+            "Lentech\\Botster\\": "src/"
+        }
+    }
 }
