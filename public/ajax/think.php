@@ -1,6 +1,6 @@
 <?php
 
-require_once '../bootstrap.php';
+require_once '../../bootstrap.php';
 
 //Connect to database
 $dbh = db_connect();

@@ -2,7 +2,7 @@
 
 use Lentech\Botster\Factory;
 
-require_once '../bootstrap.php';
+require_once '../../bootstrap.php';
 
 // Check that all data is set
 if (! isset($_POST['conversation_id']) || ! isset($_POST['input']))
