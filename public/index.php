@@ -10,10 +10,10 @@
 		<link rel="stylesheet" href="<?=DOMAIN_ROOT?>css/style.css" />
 		<script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
 		<script type="text/javascript" src="<?=DOMAIN_ROOT?>mustache/mustache.js"></script>
-		<script type="text/javascript" src="<?=DOMAIN_ROOT?>settings.js"></script>
 		<script type="text/javascript" src="<?=DOMAIN_ROOT?>javascript.js"></script>
 	</head>
 	<body>
+        <script>var config = {domainRoot: '<?=DOMAIN_ROOT?>'}</script>
 		<script type="text/javascript" src="<?=DOMAIN_ROOT?>google_analytics.js"></script>
 		<header class="main">
 			<img src="<?=DOMAIN_ROOT?>images/logo.png" class="logo" alt="" />

@@ -63,7 +63,7 @@ function checkEnter(e, func)
 function appendMessages(data)
 {
 	// Get template
-	$.get(domainRoot+'templates/messages.mst', function(template) {
+	$.get(config.domainRoot+'templates/messages.mst', function(template) {
 		// Set author booleans
 		$.each(data.messages, function(index, message) {
 			if (message.author_id === 0) {
@@ -123,7 +123,7 @@ function say()
 	};
 
 	// Post data to server
-	$.post(domainRoot+'ajax/say.php', $data, function(response) {
+	$.post(config.domainRoot+'ajax/say.php', $data, function(response) {
 		// If there was an error
 		if (response !== '')
 		{
@@ -145,7 +145,7 @@ function say()
  */
 function think()
 {
-	$.post(domainRoot+'ajax/think.php', function(response) {
+	$.post(config.domainRoot+'ajax/think.php', function(response) {
 		// If there was an error
 		if (response !== '')
 		{
@@ -177,7 +177,7 @@ function think()
  */
 function getLog(callback)
 {
-	$url = domainRoot+'ajax/log.php';
+	$url = config.domainRoot+'ajax/log.php';
 	
 	// If last message ID has been set
 	if (lastMessageId !== null)
@@ -216,7 +216,7 @@ function newConversation()
 		// Set conversation ID
 		conversationId = data.conversation_id;
 	};
-	request.open('get', domainRoot+'ajax/new_conversation.php', false);
+	request.open('get', config.domainRoot+'ajax/new_conversation.php', false);
 	request.send();
 }
 
@@ -253,7 +253,7 @@ function updateStatsLoop()
  */
 function updateStat(name)
 {
-	$.get(domainRoot+'ajax/'+name+'.php', function(data) {
+	$.get(config.domainRoot+'ajax/'+name+'.php', function(data) {
 		$("#"+name).html(data);
 	});
 }
