@@ -13,7 +13,12 @@
 		<script type="text/javascript" src="<?=DOMAIN_ROOT?>javascript.js"></script>
 	</head>
 	<body>
-        <script>var config = {domainRoot: '<?=DOMAIN_ROOT?>'}</script>
+        <script>
+            var config = {
+                domainRoot: '<?=DOMAIN_ROOT?>',
+                analyticsId: '<?=$settings['analytics_id']?>',
+            }
+        </script>
 		<script type="text/javascript" src="<?=DOMAIN_ROOT?>google_analytics.js"></script>
 		<header class="main">
 			<img src="<?=DOMAIN_ROOT?>images/logo.png" class="logo" alt="" />
