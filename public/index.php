@@ -9,7 +9,7 @@
 		<link rel="shortcut icon" href="<?=DOMAIN_ROOT?>images/logo_16.png" />
 		<link rel="stylesheet" href="<?=DOMAIN_ROOT?>css/style.css" />
 		<script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
-		<script type="text/javascript" src="<?=DOMAIN_ROOT?>mustache/mustache.js"></script>
+		<script type="text/javascript" src="<?=DOMAIN_ROOT?>components/mustache/mustache.min.js"></script>
 		<script type="text/javascript" src="<?=DOMAIN_ROOT?>javascript/main.js"></script>
 	</head>
 	<body>
