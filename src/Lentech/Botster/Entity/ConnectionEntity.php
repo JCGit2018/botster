@@ -2,7 +2,7 @@
 
 namespace Lentech\Botster\Entity;
 
-class Connection extends Entity
+class ConnectionEntity extends Entity
 {
 	public $id;
 	public $from;

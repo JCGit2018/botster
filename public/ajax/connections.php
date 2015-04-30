@@ -2,16 +2,13 @@
 
 require_once '../../bootstrap.php';
 
-use Lentech\Botster\Factory;
+use Lentech\Botster\Factory\RepositoryFactory;
 
 //Connect to database
 $dbh = db_connect();
 
-// Instatiate repository factory
-$repository_factory = new Factory\Repository($dbh);
-
 // Make connection repository
-$connection_repository = $repository_factory->makeConnection();
+$connection_repository = (new RepositoryFactory($dbh))->makeConnection();
 
 // Output number of connections
 echo number_format($connection_repository->count());

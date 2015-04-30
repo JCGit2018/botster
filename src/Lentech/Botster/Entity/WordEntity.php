@@ -2,9 +2,9 @@
 
 namespace Lentech\Botster\Entity;
 
-class Utterance extends Entity
+class WordEntity extends Entity
 {
 	public $id;
 	public $text;
-	public $said;
+	public $definition;
 }

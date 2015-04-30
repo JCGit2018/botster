@@ -2,7 +2,7 @@
 
 namespace Lentech\Botster\Entity;
 
-class Conversation extends Entity
+class ConversationEntity extends Entity
 {
 	public $id;
 	public $ip;

@@ -2,7 +2,7 @@
 
 require_once '../../bootstrap.php';
 
-use Lentech\Botster\Factory;
+use Lentech\Botster\Factory\RepositoryFactory;
 
 // Continue session
 session_start();
@@ -20,7 +20,7 @@ $conversation_id = $_SESSION['conversation_id'];
 $dbh = db_connect();
 
 // Instantiate message repository
-$message_repository = (new Factory\Repository($dbh))->makeMessage();
+$message_repository = (new RepositoryFactory($dbh))->makeMessage();
 
 // Get last message ID is not set
 if (! isset($_GET['last']))

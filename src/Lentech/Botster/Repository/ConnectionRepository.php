@@ -2,28 +2,28 @@
 
 namespace Lentech\Botster\Repository;
 
-use Lentech\Botster\Entity;
 use Aura\SqlQuery\QueryFactory;
+use Lentech\Botster\Entity\ConnectionEntity;
 
-class Connection
+class ConnectionRepository
 {
 	const TABLE = 'connections';
-	
+
 	private $dbh;
 	private $query_factory;
-	
+
 	public function __construct(\PDO $dbh, QueryFactory $query_factory)
 	{
 		$this->dbh = $dbh;
 		$this->query_factory = $query_factory;
 	}
-	
+
 	/**
 	 * Creates a new connection.
-	 * 
+	 *
 	 * @return bool Success
 	 */
-	public function create(Entity\Connection $connection)
+	public function create(ConnectionEntity $connection)
 	{
 		$insert = $this->query_factory->newInsert()
 			->into(self::TABLE)
@@ -32,19 +32,18 @@ class Connection
 				'from' => $connection->from,
 				'to' => $connection->to,
 			]);
-		
+
 		$query = $this->dbh->prepare($insert->__toString());
 
 		return $query->execute($insert->getBindValues());
 	}
-	
+
 	/**
 	 * Updates a connection with the modified data.
-	 * 
-	 * @param Entity\Connection $connection
+	 *
 	 * @return bool Successful
 	 */
-	public function save(Entity\Connection $connection)
+	public function save(ConnectionEntity $connection)
 	{
 		$update = $this->query_factory->newUpdate()
 			->table(self::TABLE)
@@ -55,18 +54,18 @@ class Connection
 				'id' => $connection->id,
 				'strength' => $connection->strength,
 			]);
-		
+
 		$query = $this->dbh->prepare($update->__toString());
-		
+
 		return $query->execute($update->getBindValues());
 	}
-	
+
 	/**
 	 * Gets a connection which is from the specified utterance.
-	 * 
+	 *
 	 * @param string $utterance_text Utterance text
 	 * @param int $amount Amount to return
-	 * @return Entity\Connection|false Connection or false on failure
+	 * @return ConnectionEntity|false Connection or false on failure
 	 */
 	public function getFrom($utterance_text, $amount = null)
 	{
@@ -79,29 +78,29 @@ class Connection
 				WHERE text = :text
 			)')
 			->bindValue('text', $utterance_text);
-		
+
 		if ($amount !== null)
 		{
 			$select->limit($amount);
 		}
-		
+
 		$query = $this->dbh->prepare($select->__toString());
 		$query->execute($select->getBindValues());
-		
+
 		if ($data = $query->fetch(\PDO::FETCH_ASSOC))
 		{
-			return new Entity\Connection($data);
+			return new ConnectionEntity($data);
 		}
-		
+
 		return false;
 	}
-	
+
 	/**
 	 * Gets the connection between two specified utterances.
-	 * 
+	 *
 	 * @param string $from_utterance
 	 * @param string $to_utterance
-	 * @return Entity\Connection Connection
+	 * @return ConnectionEntity Connection
 	 */
 	public function getBetween($from_utterance, $to_utterance)
 	{
@@ -123,21 +122,21 @@ class Connection
 				'from' => $from_utterance,
 				'to' => $to_utterance,
 			]);
-		
+
 		$query = $this->dbh->prepare($select->__toString());
 		$query->execute($select->getBindValues());
-		
+
 		if ($data = $query->fetch(\PDO::FETCH_ASSOC))
 		{
-			return new Entity\Connection($data);
+			return new ConnectionEntity($data);
 		}
-		
+
 		return false;
 	}
-	
+
 	/**
 	 * Gets the best outputs in response to an input.
-	 * 
+	 *
 	 * @param string $input The input text
 	 * @param int $amount Amount of responses to return
 	 * @param $excluded_responses Responses to not return
@@ -151,7 +150,7 @@ class Connection
 			$excluded_responses[$key] = $this->dbh->quote($output);
 		}
 		$excluded_responses_sql = implode(', ', $excluded_responses);
-		
+
 		$select = $this->query_factory->newSelect()
 			->cols(['c.*'])
 			->from(self::TABLE.' AS c')
@@ -161,28 +160,28 @@ class Connection
 			->where('o.text NOT IN ('.$excluded_responses_sql.')')
 			->orderBy(['strength DESC'])
 			->bindValue('input', $input);
-		
+
 		if ($amount !== null)
 		{
 			$select->limit($amount);
 		}
-		
+
 		$query = $this->dbh->prepare($select->__toString());
 		$query->execute($select->getBindValues());
-		
+
 		$connections = [];
-		
+
 		while ($data = $query->fetch(\PDO::FETCH_ASSOC))
 		{
-			$connections[] = new Entity\Connection($data);
+			$connections[] = new ConnectionEntity($data);
 		}
-		
+
 		return $connections;
 	}
-	
+
 	/**
 	 * Counts the number of connections.
-	 * 
+	 *
 	 * @return int Number of connections
 	 */
 	public function count()
@@ -190,7 +189,7 @@ class Connection
 		$select = $this->query_factory->newSelect()
 			->cols(['COUNT(*)'])
 			->from('connections');
-		
+
 		return $this->dbh->query($select->__toString())->fetchColumn();
 	}
 }

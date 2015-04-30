@@ -1,6 +1,6 @@
 <?php
 
-use Lentech\Botster\Factory;
+use Lentech\Botster\Factory\InteractorFactory;
 
 require_once '../../bootstrap.php';
 
@@ -8,7 +8,7 @@ require_once '../../bootstrap.php';
 $dbh = db_connect();
 
 // Instantiate start conversation interactor
-$interactor = (new Factory\Interactor($dbh))->makeStartConversation();
+$interactor = (new InteractorFactory($dbh))->makeStartConversation();
 
 // Get user information
 $ip = $_SERVER['REMOTE_ADDR'];

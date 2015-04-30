@@ -2,40 +2,42 @@
 
 namespace Lentech\Botster\Factory;
 
-use Lentech\Botster\Interactor as Interactors;
+use Lentech\Botster\Interactor\StartConversationInteractor;
+use Lentech\Botster\Interactor\SayMessageInteractor;
+use Lentech\Botster\Interactor\LetRespondInteractor;
 
-class Interactor
+class InteractorFactory
 {
 	private $dbh;
-	
+
 	public function __construct(\PDO $dbh)
 	{
 		$this->dbh = $dbh;
 	}
-	
+
 	public function makeStartConversation()
 	{
-		$repository_factory = new Repository($this->dbh);
-		
-		return new Interactors\StartConversation(
+		$repository_factory = new RepositoryFactory($this->dbh);
+
+		return new StartConversationInteractor(
 			$repository_factory->makeConversation()
 		);
 	}
-	
+
 	public function makeSayMessage()
 	{
-		$repository_factory = new Repository($this->dbh);
-		
-		return new Interactors\SayMessage(
+		$repository_factory = new RepositoryFactory($this->dbh);
+
+		return new SayMessageInteractor(
 			$repository_factory->makeMessage()
 		);
 	}
-	
+
 	public function makeLetRespond()
 	{
-		$repository_factory = new Repository($this->dbh);
-		
-		return new Interactors\LetRespond(
+		$repository_factory = new RepositoryFactory($this->dbh);
+
+		return new LetRespondInteractor(
 			$repository_factory->makeUtterance(),
 			$repository_factory->makeConnection(),
 			$repository_factory->makeWord(),

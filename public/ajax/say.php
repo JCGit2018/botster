@@ -1,6 +1,6 @@
 <?php
 
-use Lentech\Botster\Factory;
+use Lentech\Botster\Factory\InteractorFactory;
 
 require_once '../../bootstrap.php';
 
@@ -28,7 +28,7 @@ if (! isset($_SESSION['conversation_id']) || $conversation_id != $_SESSION['conv
 $dbh = db_connect();
 
 // Instantiate interactor factory
-$interactor = (new Factory\Interactor($dbh))->makeSayMessage();
+$interactor = (new InteractorFactory($dbh))->makeSayMessage();
 
 // Say input in the conversation
 $interactor->interact($conversation_id, $message);

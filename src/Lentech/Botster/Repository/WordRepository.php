@@ -2,10 +2,10 @@
 
 namespace Lentech\Botster\Repository;
 
-use Lentech\Botster\Entity;
 use Aura\SqlQuery\QueryFactory;
+use Lentech\Botster\Entity\WordEntity;
 
-class Word
+class WordRepository
 {
 	const TABLE = 'words';
 
@@ -23,7 +23,7 @@ class Word
 	 *
 	 * @return bool Success
 	 */
-	public function create(Entity\Word $word)
+	public function create(WordEntity $word)
 	{
 		$insert = $this->query_factory->newInsert()
 			->into(self::TABLE)
@@ -42,7 +42,7 @@ class Word
 	 * Gets a word.
 	 *
 	 * @param string $text
-	 * @return Entity\Word|false Word or false on failure
+	 * @return WordEntity|false Word or false on failure
 	 */
 	public function getWithText($text)
 	{
@@ -58,7 +58,7 @@ class Word
 
 		if ($data = $query->fetch(\PDO::FETCH_ASSOC))
 		{
-			return new Entity\Word($data);
+			return new WordEntity($data);
 		}
 
 		return false;

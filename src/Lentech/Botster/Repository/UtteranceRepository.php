@@ -2,10 +2,10 @@
 
 namespace Lentech\Botster\Repository;
 
-use Lentech\Botster\Entity;
 use Aura\SqlQuery\QueryFactory;
+use Lentech\Botster\Entity\UtteranceEntity;
 
-class Utterance
+class UtteranceRepository
 {
 	const TABLE = 'utterances';
 
@@ -23,7 +23,7 @@ class Utterance
 	 *
 	 * @return bool Success
 	 */
-	public function create(Entity\Utterance $utterance)
+	public function create(UtteranceEntity $utterance)
 	{
 		$insert = $this->query_factory->newInsert()
 			->into(self::TABLE)
@@ -42,7 +42,7 @@ class Utterance
 	 *
 	 * @return bool Success
 	 */
-	public function save(Entity\Utterance $utterance)
+	public function save(UtteranceEntity $utterance)
 	{
 		$update = $this->query_factory->newUpdate()
 			->table(self::TABLE)
@@ -63,7 +63,7 @@ class Utterance
 	 * Gets an utterance with the specified ID.
 	 *
 	 * @param int $id The utterance ID
-	 * @return Entity\Utterance|false Utterance or false on failure
+	 * @return UtteranceEntity|false Utterance or false on failure
 	 */
 	public function getWithId($id)
 	{
@@ -79,7 +79,7 @@ class Utterance
 
 		if (($data = $query->fetch(\PDO::FETCH_ASSOC)))
 		{
-			return new Entity\Utterance($data);
+			return new UtteranceEntity($data);
 		}
 
 		return false;
@@ -89,7 +89,7 @@ class Utterance
 	 * Gets an utterance with the specified text.
 	 *
 	 * @param string $text The text
-	 * @return Entity\Utterance|false Utterance or false on failure
+	 * @return UtteranceEntity|false Utterance or false on failure
 	 */
 	public function getWithText($text)
 	{
@@ -105,7 +105,7 @@ class Utterance
 
 		if ($data = $query->fetch(\PDO::FETCH_ASSOC))
 		{
-			return new Entity\Utterance($data);
+			return new UtteranceEntity($data);
 		}
 
 		return false;
@@ -115,7 +115,7 @@ class Utterance
 	 * Gets an utterance with the most similar text.
 	 *
 	 * @param string $text
-	 * @return Entity\Utterance|false Utterance or false on failure
+	 * @return UtteranceEntity|false Utterance or false on failure
 	 */
 	public function getWithSimilarText($text)
 	{
@@ -143,7 +143,7 @@ class Utterance
 
 		if ($data = $query->fetch(\PDO::FETCH_ASSOC))
 		{
-			return new Entity\Utterance($data);
+			return new UtteranceEntity($data);
 		}
 
 		return false;
@@ -153,7 +153,7 @@ class Utterance
 	 * Gets the best utterance to be learnt. This is calculated by selecting an
 	 * utterance with the least amount of connections at random.
 	 *
-	 * @return Entity\Utterance|false Utterance or false on failure
+	 * @return UtteranceEntity|false Utterance or false on failure
 	 */
 	public function getBestToLearn()
 	{
@@ -179,7 +179,7 @@ class Utterance
 
 		if ($data = $query->fetch(\PDO::FETCH_ASSOC))
 		{
-			return new Entity\Utterance($data);
+			return new UtteranceEntity($data);
 		}
 
 		return false;

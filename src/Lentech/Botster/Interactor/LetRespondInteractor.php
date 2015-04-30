@@ -2,11 +2,17 @@
 
 namespace Lentech\Botster\Interactor;
 
-use Lentech\Botster\Repository;
-use Lentech\Botster\Entity;
-use Lentech\Botster\Entity\Message;
+use Lentech\Botster\Repository\UtteranceRepository;
+use Lentech\Botster\Repository\ConnectionRepository;
+use Lentech\Botster\Repository\WordRepository;
+use Lentech\Botster\Repository\MessageRepository;
+use Lentech\Botster\Repository\LogRepository;
+use Lentech\Botster\Entity\MessageEntity;
+use Lentech\Botster\Entity\LogEntity;
+use Lentech\Botster\Entity\ConnectionEntity;
+use Lentech\Botster\Entity\UtteranceEntity;
 
-class LetRespond
+class LetRespondInteractor
 {
 	private $utterance_repository;
 	private $connection_repository;
@@ -15,11 +21,11 @@ class LetRespond
 	private $log_repository;
 
 	public function __construct(
-		Repository\Utterance $utterance_repository,
-		Repository\Connection $connection_repository,
-		Repository\Word $word_repository,
-		Repository\Message $message_repository,
-		Repository\Log $log_repository
+		UtteranceRepository $utterance_repository,
+		ConnectionRepository $connection_repository,
+		WordRepository $word_repository,
+		MessageRepository $message_repository,
+		LogRepository $log_repository
 	) {
 		$this->utterance_repository = $utterance_repository;
 		$this->connection_repository = $connection_repository;
@@ -47,7 +53,7 @@ class LetRespond
 			return false;
 
 		// Create log entity
-		$log = new Entity\Log();
+		$log = new LogEntity();
 
 		// Log conversation ID
 		$log->append('Conversation ID: '.$conversation_id);
@@ -56,7 +62,7 @@ class LetRespond
 		$log->append('Input: '.$input->text);
 
 		// Get previous input
-		$previous_input = $this->message_repository->getInConversationByAuthor($conversation_id, Message::USER, 1);
+		$previous_input = $this->message_repository->getInConversationByAuthor($conversation_id, MessageEntity::USER, 1);
 
 		// Get whether input has been said before
 		$input_said_before = ($previous_input !== false && $input->text === $previous_input->text);
@@ -75,7 +81,7 @@ class LetRespond
 			}
 
 			// Get previous output
-			$previous_output = $this->message_repository->getInConversationByAuthor($conversation_id, Message::BOT);
+			$previous_output = $this->message_repository->getInConversationByAuthor($conversation_id, MessageEntity::BOT);
 
 			// If previous output exists
 			if ($previous_output !== false)
@@ -91,7 +97,7 @@ class LetRespond
 		$excluded_responses = [$input->text];
 
 		// Get previous output
-		$previous_output = $this->message_repository->getInConversationByAuthor($conversation_id, Message::BOT);
+		$previous_output = $this->message_repository->getInConversationByAuthor($conversation_id, MessageEntity::BOT);
 
 		// If previous output exists
 		if ($previous_output !== false)
@@ -136,9 +142,9 @@ class LetRespond
 		$log->append('Script executed in '.$execution_time.' seconds.');
 
 		// Say message in conversation
-		$message = new Entity\Message([
+		$message = new MessageEntity([
 			'conversation_id' => $conversation_id,
-			'author_id' => Message::BOT,
+			'author_id' => MessageEntity::BOT,
 			'text' => $output,
 		]);
 		$this->message_repository->create($message);
@@ -183,7 +189,7 @@ class LetRespond
 			}
 
 			// Create new connection
-			$connection = new Entity\Connection([
+			$connection = new ConnectionEntity([
 				'from' => $input->id,
 				'to' => $output->id,
 			]);
@@ -276,7 +282,7 @@ class LetRespond
 	 * @param string $input
 	 * @return bool
 	 */
-	private function checkSpam($input, Entity\Log $log)
+	private function checkSpam($input, LogEntity $log)
 	{
 		// Get words
 		$words = $this->splitSentenceIntoWords($input);
@@ -325,7 +331,7 @@ class LetRespond
 	 */
 	private function learnUtterance($utterance_text)
 	{
-		$utterance = new Entity\Utterance([
+		$utterance = new UtteranceEntity([
 			'text' => $utterance_text,
 		]);
 
@@ -337,7 +343,7 @@ class LetRespond
 	 *
 	 * @return void
 	 */
-	private function incrementUtteranceSaidCount(Entity\Utterance $utterance)
+	private function incrementUtteranceSaidCount(UtteranceEntity $utterance)
 	{
 		$utterance->said++;
 		$this->utterance_repository->save($utterance);
