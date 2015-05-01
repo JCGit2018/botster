@@ -122,13 +122,6 @@ function say()
 
 	// Post data to server
 	$.post(config.domainRoot+'ajax/say', $data, function(response) {
-		// If there was an error
-		if (response !== '')
-		{
-			// Alert it
-			alert(response);
-		}
-
 		// Update
 		getLog(function() {
 			// Let Botster respond
@@ -144,13 +137,6 @@ function say()
 function think()
 {
 	$.post(config.domainRoot+'ajax/think', function(response) {
-		// If there was an error
-		if (response !== '')
-		{
-			// Alert it
-			alert(response);
-		}
-		
 		// Update log
 		getLog(function(){});
 		
