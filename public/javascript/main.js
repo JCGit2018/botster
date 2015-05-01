@@ -109,12 +109,10 @@ function say()
 		return false;
 	}
 
-	// Disable input and submit
+	// Clear message input and focus on it
 	var messageInput = document.getElementById('input');
-	var sayButton = document.getElementById('submit');
-	messageInput.disabled = true;
-	sayButton.disabled = true;
 	messageInput.value = '';
+	messageInput.focus();
 
 	// Build data to send
 	$data = {
@@ -154,14 +152,7 @@ function think()
 		}
 		
 		// Update log
-		getLog(function(){
-			// Enable input and submit
-			var messageInput = document.getElementById('input');
-			var sayButton = document.getElementById('submit');
-			messageInput.disabled = false;
-			sayButton.disabled = false;
-			messageInput.focus();
-		});
+		getLog(function(){});
 		
 		// Update stats
 		updateStat('utterances');
