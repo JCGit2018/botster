@@ -123,7 +123,7 @@ function say()
 	};
 
 	// Post data to server
-	$.post(config.domainRoot+'ajax/say.php', $data, function(response) {
+	$.post(config.domainRoot+'ajax/say', $data, function(response) {
 		// If there was an error
 		if (response !== '')
 		{
@@ -145,7 +145,7 @@ function say()
  */
 function think()
 {
-	$.post(config.domainRoot+'ajax/think.php', function(response) {
+	$.post(config.domainRoot+'ajax/think', function(response) {
 		// If there was an error
 		if (response !== '')
 		{
@@ -177,7 +177,7 @@ function think()
  */
 function getLog(callback)
 {
-	$url = config.domainRoot+'ajax/log.php';
+	$url = config.domainRoot+'ajax/log';
 	
 	// If last message ID has been set
 	if (lastMessageId !== null)
@@ -216,7 +216,7 @@ function newConversation()
 		// Set conversation ID
 		conversationId = data.conversation_id;
 	};
-	request.open('get', config.domainRoot+'ajax/new_conversation.php', false);
+	request.open('get', config.domainRoot+'ajax/conversations/create', false);
 	request.send();
 }
 
@@ -253,7 +253,7 @@ function updateStatsLoop()
  */
 function updateStat(name)
 {
-	$.get(config.domainRoot+'ajax/'+name+'.php', function(data) {
+	$.get(config.domainRoot+'ajax/'+name, function(data) {
 		$("#"+name).html(data);
 	});
 }

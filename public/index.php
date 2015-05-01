@@ -1,68 +1,100 @@
-<?php require_once '../bootstrap.php'; ?>
-<!doctype html>
-<html>
-	<head>
-		<title>Botster - Chatbot Artificial Intelligence</title>
-		<meta charset="UTF-8" />
-		<meta name="viewport" content="width=device-width, user-scalable=no">
-		<meta name="description" content="Botster is an online chatbot artificial intelligence which learns from the conversations it has with users on the Internet." />
-		<link rel="shortcut icon" href="<?=DOMAIN_ROOT?>images/logo_16.png" />
-		<link rel="stylesheet" href="<?=DOMAIN_ROOT?>css/style.css" />
-		<script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
-		<script type="text/javascript" src="<?=DOMAIN_ROOT?>components/mustache/mustache.min.js"></script>
-		<script type="text/javascript" src="<?=DOMAIN_ROOT?>javascript/main.js"></script>
-	</head>
-	<body>
-        <script>
-            var config = {
-                domainRoot: '<?=DOMAIN_ROOT?>',
-                analyticsId: '<?=$settings['analytics_id']?>',
-            }
-        </script>
-		<script type="text/javascript" src="<?=DOMAIN_ROOT?>javascript/google_analytics.js"></script>
-		<header class="main">
-			<img src="<?=DOMAIN_ROOT?>images/logo.png" class="logo" alt="" />
-			<h1>Botster</h1>
-			<div class="information">
-				<p>Hello there, my name's Botster and I'm an open-source chatbot artificial intelligence! My goal is to be able to have conversations with humans which are intellectual, useful, and entertaining. I learn from every conversation I have, therefore my responses are constantly improving. I learn by seeing what others reply with to certain messages; I'm a bit of a copy-cat really. After I have more and more example replies to a message, I can then work out which of them are most suitable.</p>
-				<div class="links">
-					<a href="https://github.com/lentech/botster" target="_blank">
-						<img src="<?=DOMAIN_ROOT?>images/github_icon.png" alt="GitHub" />
-					</a>
-				</div>
-			</div>
-			<a href="http://lentech.org" target="_blank" class="organisation">
-				<img src="<?=DOMAIN_ROOT?>images/lentech_logo.png" alt="Lentech" />
-			</a>
-		</header>
-		<div class="stats">
-			<span title="People Chatting" class="stat">
-				<div class="title">People Chatting</div>
-				<img src="<?=DOMAIN_ROOT?>images/online.png" alt="" class="icon" />
-				<span id="online" class="number"></span>
-			</span>
-			<span title="Conversations Had" class="stat">
-				<div class="title">Conversations Had</div>
-				<img src="<?=DOMAIN_ROOT?>images/conversations.png" alt="" class="icon" />
-				<span id="conversations" class="number"></span>
-			</span>
-			<span title="Unique Utterances" class="stat">
-				<div class="title">Unique Utterances</div>
-				<img src="<?=DOMAIN_ROOT?>images/quotation_mark.png" alt="" class="icon" />
-				<span id="utterances" class="number"></span>
-			</span>
-			<span title="Utterance Connections" class="stat">
-				<div class="title">Utterance Connections</div>
-				<img src="<?=DOMAIN_ROOT?>images/connections.png" alt="" class="icon" />
-				<span id="connections" class="number"></span>
-			</span>
-		</div>
-		<div class="chat">
-			<div id="messages" class="messages"></div>
-			<div class="input">
-				<input type="text" maxlength="100" autocomplete="off" x-webkit-speech id="input" class="text-box" />
-				<input type="button" value="Say" id="submit" class="say-button" />
-			</div>
-		</div>
-	</body>
-</html>
+<?php
+
+/**
+ * The directory in which your application specific resources are located.
+ * The application directory must contain the bootstrap.php file.
+ *
+ * @link http://kohanaframework.org/guide/about.install#application
+ */
+$application = '../application';
+
+/**
+ * The directory in which your modules are located.
+ *
+ * @link http://kohanaframework.org/guide/about.install#modules
+ */
+$modules = 'modules';
+
+/**
+ * The directory in which the Kohana resources are located. The system
+ * directory must contain the classes/kohana.php file.
+ *
+ * @link http://kohanaframework.org/guide/about.install#system
+ */
+$system = '../vendor/kohana/core';
+
+/**
+ * The default extension of resource files. If you change this, all resources
+ * must be renamed to use the new extension.
+ *
+ * @link http://kohanaframework.org/guide/about.install#ext
+ */
+define('EXT', '.php');
+
+/**
+ * End of standard configuration! Changing any of the code below should only be
+ * attempted by those with a working knowledge of Kohana internals.
+ *
+ * @link http://kohanaframework.org/guide/using.configuration
+ */
+
+// Set the full path to the docroot
+define('DOCROOT', realpath(dirname(__FILE__)).DIRECTORY_SEPARATOR);
+
+// Make the application relative to the docroot, for symlink'd index.php
+if ( ! is_dir($application) AND is_dir(DOCROOT.$application))
+	$application = DOCROOT.$application;
+
+// Make the modules relative to the docroot, for symlink'd index.php
+if ( ! is_dir($modules) AND is_dir(DOCROOT.$modules))
+	$modules = DOCROOT.$modules;
+
+// Make the system relative to the docroot, for symlink'd index.php
+if ( ! is_dir($system) AND is_dir(DOCROOT.$system))
+	$system = DOCROOT.$system;
+
+// Define the absolute paths for configured directories
+define('APPPATH', realpath($application).DIRECTORY_SEPARATOR);
+define('MODPATH', realpath($modules).DIRECTORY_SEPARATOR);
+define('SYSPATH', realpath($system).DIRECTORY_SEPARATOR);
+
+// Clean up the configuration vars
+unset($application, $modules, $system);
+
+/**
+ * Define the start time of the application, used for profiling.
+ */
+if ( ! defined('KOHANA_START_TIME'))
+{
+	define('KOHANA_START_TIME', microtime(TRUE));
+}
+
+/**
+ * Define the memory usage at the start of the application, used for profiling.
+ */
+if ( ! defined('KOHANA_START_MEMORY'))
+{
+	define('KOHANA_START_MEMORY', memory_get_usage());
+}
+
+// Bootstrap the application
+require APPPATH.'bootstrap'.EXT;
+
+if (PHP_SAPI == 'cli') // Try and load minion
+{
+	class_exists('Minion_Task') OR die('Please enable the Minion module for CLI support.');
+	set_exception_handler(array('Minion_Exception', 'handler'));
+
+	Minion_Task::factory(Minion_CLI::options())->execute();
+}
+else
+{
+	/**
+	 * Execute the main request. A source of the URI can be passed, eg: $_SERVER['PATH_INFO'].
+	 * If no source is specified, the URI will be automatically detected.
+	 */
+	echo Request::factory(TRUE, array(), FALSE)
+		->execute()
+		->send_headers(TRUE)
+		->body();
+}

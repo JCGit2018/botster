@@ -1,5 +1,9 @@
 /vendor/
 /nbproject/
 *.scssc
-/settings.php
+/application/config/
+/application/cache/*
+!/application/cache/.gitignore
+/application/logs/*
+!/application/logs/.gitignore
 /public/components/
