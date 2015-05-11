@@ -22,10 +22,6 @@ $(document).ready(function() {
 		say();
 	});
 	
-	document.getElementById('submit').addEventListener('click', function() {
-		say();
-	});
-	
 	focusInput();
 	updateStatsLoop();
 });
