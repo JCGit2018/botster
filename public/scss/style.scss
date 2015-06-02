@@ -79,7 +79,12 @@ header.main {
 	}
 	.logo {
 		float: left;
+		width: 48px;
 		height: 100%;
+		
+		@media (min-width: 400px) and (min-height: 600px) {
+			width: 64px;
+		}
 		
 		img {
 			display: block;
