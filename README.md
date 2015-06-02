@@ -27,6 +27,7 @@ Botster has its own custom database of words which it deems as valid English. To
  - MySQL
  - [Composer](https://getcomposer.org)
  - [Bower](http://bower.io)
+ - [Sass](http://sass-lang.com/)
 
 ## Installation
 
@@ -39,3 +40,4 @@ Botster has its own custom database of words which it deems as valid English. To
  - Make `application/cache/` and `application/logs/` directories writable to the web server.
  - Run `composer install` to install all PHP package dependencies.
  - Run `bower install` to install all front-end dependencies.
+ - Compile all SCSS files in `public/scss/` to `public/css/`.

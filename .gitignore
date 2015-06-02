@@ -7,3 +7,5 @@
 /application/logs/*
 !/application/logs/.gitignore
 /public/components/
+/public/css/*
+!/public/css/.gitignore
