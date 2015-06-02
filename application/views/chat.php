@@ -1,4 +1,11 @@
 <div class="app">
+    <div class="warning" id="chat-warning">
+        <div class="message">
+            <img src="<?=URL::site('images/icons/cross.png')?>" alt="Hide" title="Close" id="warning-hide-button" class="hide-button" />
+            <div class="title">Warning</div>
+            <div class="text">Botster learns from real people on the Internet and as a result, may sometimes use foul or inappropriate language.</div>
+        </div>
+    </div>
     <div class="container">
         <div class="statistics">
             <div title="People chatting" class="statistic">

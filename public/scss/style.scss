@@ -169,9 +169,46 @@ header.main {
 	}
 }
 .app {
+	position: relative;
 	height: 100%;
 	padding: 0 4%;
 	
+	.warning {
+		display: none;
+		position: absolute;
+		top: 0;
+		bottom: 0;
+		left: 0;
+		right: 0;
+		height: 100%;
+		padding: 8%;
+		background-color: rgba(0, 0, 0, 0.7);
+
+		.message {
+			position: relative;
+			top: 25%;
+			max-width: 500px;
+			margin: 0 auto;
+			padding: 20px;
+			border-radius: 15px;
+			background-color: #FACE20;
+			
+			.hide-button {
+				float: right;
+
+				&:hover {
+					cursor: pointer;
+				}
+			}
+			.title {
+				font-size: 1.2rem;
+				font-weight: bold;
+			}
+			.text {
+				margin-top: 10px;
+			}
+		}
+	}
 	.container {
 		@extend %container;
 		height: 100%;
@@ -213,30 +250,30 @@ header.main {
 		height: 100%;
 		overflow: hidden;
 		font-size: 1.4rem;
-		
+
 		@media (min-height: 500px) {
-			padding-bottom: 4%;
+		padding-bottom: 4%;
 		}
 		@media (min-height: 700px) {
 			padding: 8% 0;
 		}
-		
+
 		.messages {
 			background-color: #fff;
 			height: calc(100% - 55px);
 			overflow-y: auto;
 			line-height: 1.8;
 			padding: 4%;
-			
+
 			@media (min-height: 700px) {
 				border-top-left-radius: 10px;
 				border-top-right-radius: 10px;
 			}
-			
+
 			.message{
 				&.robot {
 					font-weight: bold;
-					
+
 					.text {
 						color: #286AB0;
 					}
@@ -255,7 +292,7 @@ header.main {
 			padding: 0 20px;
 			border: 0;
 			outline: 0;
-			
+
 			@media (min-height: 500px) {
 				border-bottom-left-radius: 10px;
 				border-bottom-right-radius: 10px;

@@ -24,6 +24,11 @@ $(document).ready(function() {
 	
 	focusInput();
 	updateStatsLoop();
+
+	if (docCookies.getItem('warningHidden') !== 'true') {
+		document.getElementById('warning-hide-button').addEventListener('click', hideChatWarning);
+		showChatWarning();
+	}
 });
 
 /**
@@ -229,4 +234,24 @@ function updateStat(name)
 	$.get(config.domainRoot+'ajax/'+name, function(data) {
 		$("#"+name).html(data);
 	});
+}
+
+/**
+ * Shows the chat warning.
+ * 
+ * @returns {void}
+ */
+function showChatWarning() {
+	document.getElementById('chat-warning').style.display = 'block';
+}
+
+/**
+ * Hides the chat warning.
+ * 
+ * @returns {void}
+ */
+function hideChatWarning() {
+	document.getElementById('chat-warning').style.display = 'none';
+	docCookies.setItem('warningHidden', true, 'Fri, 31 Dec 9999 23:59:59 GMT', '/');
+	focusInput();
 }

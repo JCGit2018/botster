@@ -122,8 +122,36 @@ header.main {
         height: 100%; }
 
 .app {
+  position: relative;
   height: 100%;
   padding: 0 4%; }
+  .app .warning {
+    display: none;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 100%;
+    padding: 8%;
+    background-color: rgba(0, 0, 0, 0.7); }
+    .app .warning .message {
+      position: relative;
+      top: 25%;
+      max-width: 500px;
+      margin: 0 auto;
+      padding: 20px;
+      border-radius: 15px;
+      background-color: #FACE20; }
+      .app .warning .message .hide-button {
+        float: right; }
+        .app .warning .message .hide-button:hover {
+          cursor: pointer; }
+      .app .warning .message .title {
+        font-size: 1.2rem;
+        font-weight: bold; }
+      .app .warning .message .text {
+        margin-top: 10px; }
   .app .container {
     height: 100%; }
   .app .statistics {

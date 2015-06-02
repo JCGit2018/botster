@@ -8,6 +8,7 @@
 		<link rel="shortcut icon" href="<?=URL::site('images/logos/16.png')?>" />
 		<link rel="stylesheet" href="<?=URL::site('css/style.css')?>" />
 		<script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+        <script type="text/javascript" src="<?=URL::site('javascript/cookies.js')?>"></script>
 		<script type="text/javascript" src="<?=URL::site('components/mustache/mustache.min.js')?>"></script>
 		<script type="text/javascript" src="<?=URL::site('javascript/main.js')?>"></script>
 	</head>
