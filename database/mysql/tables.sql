@@ -48,7 +48,7 @@ ALTER TABLE `connections`
  ADD PRIMARY KEY (`id`), ADD UNIQUE KEY `input` (`from`,`to`);
 
 ALTER TABLE `conversations`
- ADD KEY `code` (`id`);
+ ADD PRIMARY KEY (`id`);
 
 ALTER TABLE `logs`
  ADD PRIMARY KEY (`id`);
