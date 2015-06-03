@@ -33,3 +33,5 @@
         </div>
     </div>
 </div>
+
+<script type="text/javascript" src="<?=URL::site('javascript/chat.js')?>"></script>

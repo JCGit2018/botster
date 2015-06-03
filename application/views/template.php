@@ -10,7 +10,6 @@
 		<script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
         <script type="text/javascript" src="<?=URL::site('javascript/cookies.js')?>"></script>
 		<script type="text/javascript" src="<?=URL::site('components/mustache/mustache.min.js')?>"></script>
-		<script type="text/javascript" src="<?=URL::site('javascript/main.js')?>"></script>
 	</head>
 	<body>
         <script>var config = <?=json_encode($config)?>;</script>
