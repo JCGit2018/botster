@@ -28,7 +28,8 @@
         <div class="chat">
             <div id="messages" class="messages"></div>
             <div class="input">
-                <input type="text" maxlength="100" autocomplete="off" x-webkit-speech placeholder="Type a message..." id="input" class="text-box" />
+                <input type="text" maxlength="100" autocomplete="off" placeholder="Type a message..." id="input" class="text-box" />
+                <img src="<?=URL::site('images/icons/microphone.png')?>" alt="Speech input" title="Speech input" id="speech-input" class="speech-input" />
             </div>
         </div>
     </div>

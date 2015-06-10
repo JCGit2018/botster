@@ -18,9 +18,9 @@ $(document).ready(function() {
 		checkEnter(event, 'say');
 	});
 	
-	input.addEventListener('webkitspeechchange', function() {
-		say();
-	});
+	if ('webkitSpeechRecognition' in window) {
+		enableSpeechRecognition();
+	}
 	
 	focusInput();
 	updateStatsLoop();
@@ -254,4 +254,36 @@ function hideChatWarning() {
 	document.getElementById('chat-warning').style.display = 'none';
 	docCookies.setItem('warningHidden', true, 'Fri, 31 Dec 9999 23:59:59 GMT', '/');
 	focusInput();
+}
+
+/**
+ * Displays the speech recognition input button.
+ * 
+ * @returns {void}
+ */
+function enableSpeechRecognition() {
+	var speechInput = document.getElementById('speech-input');
+	document.getElementById('input').style.paddingRight = '50px';
+	speechInput.style.display = 'block';
+	speechInput.addEventListener('click', getSpeechInput);
+}
+
+/**
+ * Requests the user for a speech input.
+ * 
+ * @returns {void}
+ */
+function getSpeechInput() {
+	var recognition = new webkitSpeechRecognition();
+	recognition.onaudiostart = function() {
+		document.getElementById('speech-input').src = config.domainRoot+'images/icons/red_microphone.png';
+	};
+	recognition.onaudioend = function() {
+		document.getElementById('speech-input').src = config.domainRoot+'images/icons/microphone.png';
+	};
+	recognition.onresult = function(event) {
+		document.getElementById('input').value =  event.results[0][0].transcript;
+		focusInput();
+	};
+	recognition.start();
 }
