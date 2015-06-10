@@ -181,6 +181,7 @@ header.main {
 	.warning {
 		display: none;
 		position: absolute;
+		z-index: 10;
 		top: 0;
 		bottom: 0;
 		left: 0;
