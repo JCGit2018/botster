@@ -30,7 +30,7 @@
                     <img src="<?=URL::site('images/icons/github.png')?>" alt="GitHub" title="GitHub" />
                 </a>
                 <a href="http://lentech.org" target="_blank" class="organisation">
-                    <img src="http://lentech.org/images/logos/32.png" alt="Lentech" title="Lentech" />
+                    <img src="<?=URL::site('images/lentech_logo.png')?>" alt="Lentech" title="Lentech" />
                 </a>
             </footer>
         </div>
